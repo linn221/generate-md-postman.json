@@ -6,7 +6,7 @@ function line(string $s) {
     echo "$s<br>";
 }
 
-function md_generate(stdClass $data, string $append = "#") {
+function md_generate(stdClass $data, string $append = "") {
     // if $data has item, it is a folder, loop each of them, prnting the folder name in H2
     if ($data->item) {
         foreach($data->item as $item) {
@@ -17,7 +17,7 @@ function md_generate(stdClass $data, string $append = "#") {
         return;
     }
     $request = new Request($data);
-    dump($request);
+    $request->markdown();
     // $request->print();
     // if $data has request, it is a request, create an instance and print the md, return;
     // if (is_null($data->request)) {
@@ -30,9 +30,11 @@ function md_generate(stdClass $data, string $append = "#") {
 //     $argv[1] = 'postman.json';
 //     // exit();
 // }
-$postman = json_decode(file_get_contents('postman.json'));
-$data = $postman->item[0];
-md_generate($data);
+$fileName = $_GET['file_name'] ?? 'postman.json';
+$postman = json_decode(file_get_contents($fileName));
+// $data = $postman->item[0];
+// dd($data);
+md_generate($postman);
 // dd($data);
 // $folders = $data->item;
 // foreach($folders as $folder) {

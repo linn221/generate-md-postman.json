@@ -10,6 +10,27 @@ class Request
         $description,
         $mode;
 
+    public static $globals = [
+        '{{pos_url}}' => 'https://c.mmsdev.site/api/v1',
+        '{{password}}' => 'password'
+    ];
+
+
+    private function replaceGlobals()
+    {
+        foreach (self::$globals as $old => $new) {
+            $this->url = str_replace($old, $new, $this->url);
+            if (is_array($this->payload)) {
+                foreach($this->payload as $input) {
+                    $input->value = str_replace($old, $new, $input->value);
+                }
+            } else {
+                $this->payload = str_replace($old, $new, $this->payload);
+            }
+        }
+    }
+
+
     public function __construct($request)
     {
         $this->name = $request->name;
@@ -28,10 +49,17 @@ class Request
                 $this->payload = $details->body->urlencoded;
             }
         }
+
+        $this->replaceGlobals();
     }
-    
+
     public function print()
     {
         echo "$this->method $this->url $this->payload";
+    }
+
+    public function markdown()
+    {
+        dump($this);
     }
 }
