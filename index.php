@@ -2,8 +2,10 @@
 require "vendor/autoload.php";
 require "Request.php";
 
-function line(string $s) {
-    echo "$s<br>";
+
+function parseMd(string $s) {
+    $parsedown = new Parsedown();
+    echo $parsedown->text($s);
 }
 
 function md_generate(stdClass $data, string $append = "") {
@@ -11,13 +13,15 @@ function md_generate(stdClass $data, string $append = "") {
     if ($data->item) {
         foreach($data->item as $item) {
             $bullet = $append . "#";
-            line("$bullet $item->name");
+            $heading = "$bullet $item->name";
+            parseMd($heading);
             md_generate($item, $bullet);
         }
         return;
     }
     $request = new Request($data);
-    $request->markdown();
+    $md = $request->markdown();
+    parseMd($md);
     // $request->print();
     // if $data has request, it is a request, create an instance and print the md, return;
     // if (is_null($data->request)) {
@@ -33,7 +37,7 @@ function md_generate(stdClass $data, string $append = "") {
 $fileName = $_GET['file_name'] ?? 'postman.json';
 $postman = json_decode(file_get_contents($fileName));
 // $data = $postman->item[0];
-// dd($data);
+// dd($postman);
 md_generate($postman);
 // dd($data);
 // $folders = $data->item;

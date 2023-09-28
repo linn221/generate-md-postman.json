@@ -1,5 +1,8 @@
 <?php
 
+use kbATeam\MarkdownTable\Column;
+use kbATeam\MarkdownTable\Table;
+
 class Request
 {
     private
@@ -15,13 +18,12 @@ class Request
         '{{password}}' => 'password'
     ];
 
-
     private function replaceGlobals()
     {
         foreach (self::$globals as $old => $new) {
             $this->url = str_replace($old, $new, $this->url);
             if (is_array($this->payload)) {
-                foreach($this->payload as $input) {
+                foreach ($this->payload as $input) {
                     $input->value = str_replace($old, $new, $input->value);
                 }
             } else {
@@ -60,6 +62,26 @@ class Request
 
     public function markdown()
     {
-        dump($this);
+        $backtip = '```';
+        $md = "";
+        $md .= "method: *$this->method*\n";
+        $md .= "$backtip http\n";
+        $md .= "$this->url\n";
+        $md .= "$backtip\n";
+        if ($this->payload) {
+            $md .= "Payload: **$this->mode**\n";
+            if (is_array($this->payload)) {
+                $md .= "\n| Arguments     | Type     | Value          |\n";
+                $md .= "| :------------ | :------- | :------------- |\n";
+                foreach ($this->payload as $row) {
+                    $md .= "|`$row->key`|`$row->type`| $row->value\n";
+                }
+            } else {
+            }
+        }
+        if (!empty($this->description)) {
+            $md .= "**Description**: *$this->description*\n";
+        }
+        return $md;
     }
 }

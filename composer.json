@@ -1,5 +1,7 @@
 {
     "require": {
-        "larapack/dd": "^1.1"
+        "larapack/dd": "^1.1",
+        "kba-team/markdown-table": "^1.1",
+        "erusev/parsedown": "^1.7"
     }
 }
