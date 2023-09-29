@@ -18,6 +18,41 @@ class Request
         '{{password}}' => 'password'
     ];
 
+    public function render()
+    {
+        $url = $this->url;
+        $method = $this->method;
+        $mode = $this->mode;
+        $description = $this->description;
+        $payload = $this->payload;
+
+        $md = '';
+        if (empty($mode)) {
+            $md = <<<GET
+method: *$method*
+```http
+$url
+```
+$description
+
+GET;
+        } else {
+            $md = <<<POST
+method: *$method*
+```http
+$url
+```
+payload: *$mode*
+
+$payload
+$description
+
+POST;
+        }
+
+        return $md;
+    }
+
     private function replaceGlobals()
     {
         foreach (self::$globals as $old => $new) {
@@ -62,26 +97,27 @@ class Request
 
     public function markdown()
     {
-        $backtip = '```';
-        $md = "";
-        $md .= "method: *$this->method*\n";
-        $md .= "$backtip http\n";
-        $md .= "$this->url\n";
-        $md .= "$backtip\n";
-        if ($this->payload) {
-            $md .= "Payload: **$this->mode**\n";
-            if (is_array($this->payload)) {
-                $md .= "\n| Arguments     | Type     | Value          |\n";
-                $md .= "| :------------ | :------- | :------------- |\n";
-                foreach ($this->payload as $row) {
-                    $md .= "|`$row->key`|`$row->type`| $row->value\n";
-                }
-            } else {
-            }
-        }
-        if (!empty($this->description)) {
-            $md .= "**Description**: *$this->description*\n";
-        }
-        return $md;
+        $data = [];
+        $data['url'] = $this->url;
+        $data['method'] = $this->method;
+        $data['url'] = $this->url;
     }
 }
+
+        // $backtip = '```';
+        // $md = "";
+        // $md .= "method: *$this->method*\n";
+        // $md .= "$backtip http\n";
+        // $md .= "$this->url\n";
+        // $md .= "$backtip\n";
+        // if ($this->payload) {
+        //     $md .= "Payload: **$this->mode**\n";
+        //     if (is_array($this->payload)) {
+        //         $md .= "\n| Arguments     | Type     | Value          |\n";
+        //         $md .= "| :------------ | :------- | :------------- |\n";
+        //         foreach ($this->payload as $row) {
+        //             $md .= "|`$row->key`|`$row->type`| $row->value\n";
+        //         }
+        //     } else {
+        //     }
+        // }

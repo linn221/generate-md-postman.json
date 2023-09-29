@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
 require "vendor/autoload.php";
 require "Request.php";
 
@@ -10,18 +11,19 @@ function parseMd(string $s) {
 
 function md_generate(stdClass $data, string $append = "") {
     // if $data has item, it is a folder, loop each of them, prnting the folder name in H2
-    if ($data->item) {
+    if (!is_null($data->item)) {
         foreach($data->item as $item) {
             $bullet = $append . "#";
-            $heading = "$bullet $item->name";
-            parseMd($heading);
+            $heading = "$bullet $item->name\n";
+            echo($heading);
             md_generate($item, $bullet);
         }
         return;
     }
     $request = new Request($data);
-    $md = $request->markdown();
-    parseMd($md);
+    $md = $request->render();
+    echo $md;
+    // parseMd($md);
     // $request->print();
     // if $data has request, it is a request, create an instance and print the md, return;
     // if (is_null($data->request)) {
