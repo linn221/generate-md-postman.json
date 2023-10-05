@@ -3,6 +3,8 @@
 use kbATeam\MarkdownTable\Column;
 use kbATeam\MarkdownTable\Table;
 
+require_once 'vendor/autoload.php';
+
 class Request
 {
     private
@@ -24,30 +26,50 @@ class Request
         $method = $this->method;
         $mode = $this->mode;
         $description = $this->description;
-        $payload = $this->payload;
 
-        $md = '';
         if (empty($mode)) {
-            $md = <<<GET
-method: *$method*
+            $md = <<<URL
+
+```http
+$method
+```
 ```http
 $url
 ```
-$description
-
-GET;
+$description 
+     
+URL;
         } else {
-            $md = <<<POST
-method: *$method*
+            // turn stdClass object into asssociative array
+            if ($mode == 'formdata' || $mode == 'urlencoded') {
+            $data = json_decode(json_encode($this->payload), true);
+            // print_r($data);
+            $table = new Table();
+            $table->addColumn('key', new Column('Key', Column::ALIGN_LEFT));
+            $table->addColumn('type', new Column('Type', Column::ALIGN_LEFT));
+            $table->addColumn('value', new Column('Value', Column::ALIGN_LEFT));
+            // $table->generate($data);
+            $table_string = $table->getString($data);
+
+            } else if ($mode == 'raw') {
+                // return $this->payload;
+                // yellow?
+                $table_string = json_encode(json_decode($this->payload, true), JSON_PRETTY_PRINT);
+                // dd($data);
+            }
+            $md = <<<PAYLOAD
+```http
+$method
+```
 ```http
 $url
 ```
-payload: *$mode*
+[*$mode*]
 
-$payload
+$table_string
 $description
 
-POST;
+PAYLOAD;
         }
 
         return $md;

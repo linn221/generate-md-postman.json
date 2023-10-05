@@ -1,10 +1,15 @@
 <?php
-error_reporting(E_ERROR | E_PARSE);
+// ini_set('display_errors', '1');
+// ini_set('display_startup_errors', '1');
+// error_reporting(E_ALL);
+
+// error_reporting(E_ERROR | E_PARSE);
 require "vendor/autoload.php";
 require "Request.php";
 
 
-function parseMd(string $s) {
+function echoMd(string $s) {
+    // echo $s;
     $parsedown = new Parsedown();
     echo $parsedown->text($s);
 }
@@ -15,15 +20,19 @@ function md_generate(stdClass $data, string $append = "") {
         foreach($data->item as $item) {
             $bullet = $append . "#";
             $heading = "$bullet $item->name\n";
-            echo($heading);
+            echoMd($heading);
+            // echo $heading;
             md_generate($item, $bullet);
         }
+        echoMd("--------");
+
         return;
     }
     $request = new Request($data);
+    // dump($request);
     $md = $request->render();
-    echo $md;
-    // parseMd($md);
+    // echo $md;
+    echoMd($md);
     // $request->print();
     // if $data has request, it is a request, create an instance and print the md, return;
     // if (is_null($data->request)) {
@@ -40,6 +49,7 @@ $fileName = $_GET['file_name'] ?? 'postman.json';
 $postman = json_decode(file_get_contents($fileName));
 // $data = $postman->item[0];
 // dd($postman);
+// dump($postman);
 md_generate($postman);
 // dd($data);
 // $folders = $data->item;
