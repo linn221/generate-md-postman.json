@@ -10,7 +10,7 @@ require "Request.php";
 
 function echoMd(string $s)
 {
-    // echo $s;
+    echo $s;
     $parsedown = new Parsedown();
     echo $parsedown->text($s);
 }
