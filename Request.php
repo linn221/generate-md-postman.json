@@ -27,12 +27,10 @@ class Request
         $mode = $this->mode;
         $description = $this->description;
 
-        if (empty($mode)) {
+        if (empty($this->payload)) {
             $md = <<<URL
 
-```http
-$method
-```
+*$method*
 ```http
 $url
 ```
@@ -54,13 +52,16 @@ URL;
             } else if ($mode == 'raw') {
                 // return $this->payload;
                 // yellow?
-                $table_string = json_encode(json_decode($this->payload, true), JSON_PRETTY_PRINT);
+                $raw_json = json_encode(json_decode($this->payload, true), JSON_PRETTY_PRINT);
+                $table_string = <<<JSON
+```json
+$raw_json
+```
+JSON;
                 // dd($data);
             }
             $md = <<<PAYLOAD
-```http
-$method
-```
+*$method*
 ```http
 $url
 ```

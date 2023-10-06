@@ -8,26 +8,30 @@ require "vendor/autoload.php";
 require "Request.php";
 
 
-function echoMd(string $s) {
+function echoMd(string $s)
+{
     // echo $s;
     $parsedown = new Parsedown();
     echo $parsedown->text($s);
 }
 
-function md_generate(stdClass $data, string $append = "") {
+function md_generate(stdClass $data, string $append = "")
+{
     // if $data has item, it is a folder, loop each of them, prnting the folder name in H2
     if (!is_null($data->item)) {
-        foreach($data->item as $item) {
+        foreach ($data->item as $item) {
             $bullet = $append . "#";
             $heading = "$bullet $item->name\n";
             echoMd($heading);
             // echo $heading;
             md_generate($item, $bullet);
         }
-        if (count($data->item) > 1) {
+        $last_item = $data->item[count($data->item) - 1];
+        // line break after echoing a folder's inside
+        // but not after echoing a folder's subfolders, tough to explain
+        if (is_null($last_item->item)) {
             echoMd("---------------------------");
         }
-
         return;
     }
     $request = new Request($data);
