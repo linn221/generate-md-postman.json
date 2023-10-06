@@ -57,37 +57,45 @@ PAYLOAD;
         $url = $this->url;
         $method = $this->method;
         $mode = $this->mode;
-        $description = $this->description;
+        if ($this->description) {
+            $description = "Note:\n$this->description";
+        } else {
+            $description = '';
+        }
 
         if (empty($this->payload)) {
             $str = self::render(compact('url', 'method', 'description'), 'url');
         } else {
-            // turn stdClass object into asssociative array
-            if ($mode == 'formdata' || $mode == 'urlencoded') {
-                $data = json_decode(json_encode($this->payload), true);
-                $table = new Table();
-                $table->addColumn('key', new Column('Key', Column::ALIGN_LEFT));
-                $table->addColumn('type', new Column('Type', Column::ALIGN_LEFT));
-                $table->addColumn('value', new Column('Value', Column::ALIGN_LEFT));
-                $table_string = $table->getString($data);
-            } else if ($mode == 'raw') {
-                // return $this->payload;
-                // yellow?
-                $raw_json = json_encode(json_decode($this->payload, true), JSON_PRETTY_PRINT);
-                $table_string = <<<JSON
-```json
-$raw_json
-```
-
-JSON;
-            }
-
+            $table_string = $this->generatePayloadTable();
             $str = self::render(compact('url', 'method', 'mode', 'table_string', 'description'), 'payload');
         }
 
         return $str;
     }
 
+    private function generatePayloadTable() : string
+    {
+        if ($this->mode == 'formdata' || $this->mode == 'urlencoded') {
+            // turn stdClass object into asssociative array
+            $data = json_decode(json_encode($this->payload), true);
+            $table = new Table();
+            $table->addColumn('key', new Column('Key', Column::ALIGN_LEFT));
+            $table->addColumn('type', new Column('Type', Column::ALIGN_LEFT));
+            $table->addColumn('value', new Column('Value', Column::ALIGN_LEFT));
+            $table_string = $table->getString($data);
+        } else if ($this->mode == 'raw') {
+            // return $this->payload;
+            // yellow?
+            $raw_json = json_encode(json_decode($this->payload, true), JSON_PRETTY_PRINT);
+            $table_string = <<<JSON
+```json
+$raw_json
+```
+
+JSON;
+        }
+        return $table_string;
+    }
 
     private function replaceGlobals()
     {
@@ -110,6 +118,7 @@ JSON;
         $details = $request->request;
         $this->method = $details->method;
         $this->url = $details->url->raw;
+        $this->description = $details->description;
 
         // body
         if ($details->body->mode) {

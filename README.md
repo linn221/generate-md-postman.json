@@ -431,7 +431,8 @@ address      | text | new york, united states
 role         | text | staff                  
 photo        | text |                        
 
-
+Note:
+only admin can create user
 
 ### create 2nd user
 
@@ -474,7 +475,8 @@ gender       | text | male
 address      | text | hello worlddddddddd
 role         | text | staff              
 
-
+Note:
+staff user can update his info, admin have all previliges, staff cannot update to admin
 
 ### show user
 
@@ -513,7 +515,8 @@ https://c.mmsdev.site/api/v1/user
 ```http
 https://c.mmsdev.site/api/v1/ban-user/3
 ```
-
+Note:
+only admin can ban a user, banned user can no longer log in, and all his sessions will be destroyed
 ---------------------------
 
 ## finance
@@ -532,7 +535,8 @@ https://c.mmsdev.site/api/v1/finance/daily/17-09-2023
 ```http
 https://c.mmsdev.site/api/v1/finance/close-sale
 ```
-
+Note:
+only admin can close/open sale, sale status doesn't required to open, implicitly done by current date
 
 ### open sale
 
