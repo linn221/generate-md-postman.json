@@ -24,7 +24,9 @@ function md_generate(stdClass $data, string $append = "") {
             // echo $heading;
             md_generate($item, $bullet);
         }
-        echoMd("--------");
+        if (count($data->item) > 1) {
+            echoMd("---------------------------");
+        }
 
         return;
     }
