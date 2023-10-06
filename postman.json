@@ -112,7 +112,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"voucher_number\": \"v123456\",\r\n    \"more_information\": \"Facere est voluptas autem ut eum ab sint dolore aut.\",\r\n    \"customer_name\": \"Khaing Thin Thin Htay\",\r\n    \"phone_number\": \"09-14248814\",\r\n    \"records\": [\r\n        {\r\n            \"product_id\": 19,\r\n            \"quantity\": 87\r\n        },\r\n        {\r\n            \"product_id\": 2,\r\n            \"quantity\": 66\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"voucher_number\": \"v123456\",\r\n    \"more_information\": \"Facere est voluptas autem ut eum ab sint dolore aut.\",\r\n    \"customer_name\": \"Khaing Thin Thin Htay\",\r\n    \"phone_number\": \"09-14248814\",\r\n    \"records\": [\r\n        {\r\n            \"product_id\": 29,\r\n            \"quantity\": 29\r\n        },\r\n        {\r\n            \"product_id\": 2,\r\n            \"quantity\": 66\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -143,18 +143,12 @@
 											}
 										],
 										"url": {
-											"raw": "{{pos_url}}/voucher?order=voucher_number",
+											"raw": "{{pos_url}}/voucher",
 											"host": [
 												"{{pos_url}}"
 											],
 											"path": [
 												"voucher"
-											],
-											"query": [
-												{
-													"key": "order",
-													"value": "voucher_number"
-												}
 											]
 										}
 									},
@@ -403,18 +397,12 @@
 											}
 										],
 										"url": {
-											"raw": "{{pos_url}}/product?page=2",
+											"raw": "{{pos_url}}/product",
 											"host": [
 												"{{pos_url}}"
 											],
 											"path": [
 												"product"
-											],
-											"query": [
-												{
-													"key": "page",
-													"value": "2"
-												}
 											]
 										}
 									},
@@ -520,13 +508,13 @@
 											}
 										],
 										"url": {
-											"raw": "{{pos_url}}/product/1",
+											"raw": "{{pos_url}}/product/7",
 											"host": [
 												"{{pos_url}}"
 											],
 											"path": [
 												"product",
-												"1"
+												"7"
 											]
 										}
 									},
@@ -592,16 +580,9 @@
 								},
 								{
 									"name": "index",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
 									"request": {
 										"method": "GET",
 										"header": [],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": []
-										},
 										"url": {
 											"raw": "{{pos_url}}/brand",
 											"host": [
@@ -616,9 +597,6 @@
 								},
 								{
 									"name": "show",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
 									"request": {
 										"method": "GET",
 										"header": [
@@ -628,10 +606,6 @@
 												"type": "text"
 											}
 										],
-										"body": {
-											"mode": "formdata",
-											"formdata": []
-										},
 										"url": {
 											"raw": "{{pos_url}}/brand/15",
 											"host": [
@@ -744,7 +718,7 @@
 											"formdata": [
 												{
 													"key": "product_id",
-													"value": "8",
+													"value": "29",
 													"type": "text"
 												},
 												{
@@ -887,19 +861,13 @@
 											"formdata": [
 												{
 													"key": "name",
-													"value": "electric",
+													"value": "sex toys",
 													"type": "text"
 												},
 												{
 													"key": "more_information",
-													"value": "electric products like electric fan",
+													"value": "sex toys",
 													"type": "text"
-												},
-												{
-													"key": "",
-													"value": "",
-													"type": "text",
-													"disabled": true
 												}
 											]
 										},
@@ -916,51 +884,7 @@
 									"response": []
 								},
 								{
-									"name": "store category Copy",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "formdata",
-											"formdata": [
-												{
-													"key": "name",
-													"value": "sex toys",
-													"type": "text"
-												},
-												{
-													"key": "more_information",
-													"value": "sex toys",
-													"type": "text"
-												},
-												{
-													"key": "",
-													"value": "",
-													"type": "text",
-													"disabled": true
-												}
-											]
-										},
-										"url": {
-											"raw": "{{pos_url}}/category",
-											"host": [
-												"{{pos_url}}"
-											],
-											"path": [
-												"category"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "show products",
+									"name": "show products under",
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -1165,7 +1089,7 @@
 										},
 										{
 											"key": "password",
-											"value": "asdffdsa",
+											"value": "{{password}}",
 											"type": "text"
 										},
 										{
@@ -1208,7 +1132,8 @@
 									"path": [
 										"user"
 									]
-								}
+								},
+								"description": "only admin can create user"
 							},
 							"response": []
 						},
@@ -1350,7 +1275,8 @@
 										"user",
 										"4"
 									]
-								}
+								},
+								"description": "staff user can update his info, admin have all previliges, staff cannot update to admin"
 							},
 							"response": []
 						},
@@ -1435,7 +1361,8 @@
 										"ban-user",
 										"3"
 									]
-								}
+								},
+								"description": "only admin can ban a user, banned user can no longer log in, and all his sessions will be destroyed"
 							},
 							"response": []
 						}
@@ -1489,7 +1416,8 @@
 										"finance",
 										"close-sale"
 									]
-								}
+								},
+								"description": "only admin can close/open sale, sale status doesn't required to open, implicitly done by current date"
 							},
 							"response": []
 						},
