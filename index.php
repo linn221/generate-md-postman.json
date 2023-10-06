@@ -11,8 +11,8 @@ require "Request.php";
 function echoMd(string $s)
 {
     echo $s;
-    $parsedown = new Parsedown();
-    echo $parsedown->text($s);
+    // $parsedown = new Parsedown();
+    // echo $parsedown->text($s);
 }
 
 function md_generate(stdClass $data, string $append = "")
