@@ -7,28 +7,54 @@
 require "vendor/autoload.php";
 require "Request.php";
 
+function pout(string $s)
+{
+    echo "$s\n";
+}
 
-function generate_md(stdClass $data, string $append = "")
+function generate_md(stdClass $data, string $heading = "", string $bullet = "")
 {
     // if $data has item, it is a folder, loop each of them, prnting the folder name in H2
-    if (!is_null($data->item)) {
-        foreach ($data->item as $item) {
-            $bullet = $append . "#";
-            $heading = "$bullet $item->name";
-            echo "\n$heading\n";
-            generate_md($item, $bullet);
+    // BASE case
+    if (!is_null($data->item))
+    {
+        // if a folder only have a single item,
+        // no need to update bullet, append a decimal
+        // bulleting is, well, hurt
+        if (count($data->item) == 1)
+        {
+            $item = $data->item[0];
+            $title = "$heading# $bullet $item->name";
+            pout($title);
+            // RECURSIVE call
+            generate_md($item, $heading, $bullet);
+            return;
+        }
+
+        // if not
+        // append a number, and keep incrementing
+        foreach ($data->item as $index => $item)
+        {
+            $index++;
+            $title = "$heading# $bullet$index. $item->name";
+            pout($title);
+            // RECURSIVE call
+            generate_md($item, $heading.'#', $bullet . "$index.");
         }
         // line break after echoing a folder's inside
         // but not after echoing a folder's subfolders, tough to explain
         $last_item = $data->item[count($data->item) - 1];
-        if (is_null($last_item->item)) {
-            echo "---------------------------\n";
+        if (is_null($last_item->item))
+        {
+            pout('----------------------------');
         }
         return;
     }
+
     // if $data has request, it is a request, create an instance and print the md, return;
+    // base case
     $request = new Request($data);
-    echo $request;
+    pout($request);
 }
 
 // if (count($argv) <= 1) {

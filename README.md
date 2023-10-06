@@ -1,9 +1,7 @@
+#  Backend
+# 1. profile
+## 1.1. change password
 
-# Backend
-
-## profile
-
-### change password
 
 *POST*
 ```http
@@ -17,29 +15,27 @@ current_password | text | password
 new_password     | text | asdfghjkl
 
 
+## 1.2. logout
 
-### logout
 
 *POST*
 ```http
 https://c.mmsdev.site/api/v1/logout
 ```
 
+## 1.3. who am i?
 
-### who am i?
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/profile
 ```
 
----------------------------
+----------------------------
+# 2. sale-processing
+## 2. voucher
+## 2.1. store voucher
 
-## sale-processing
-
-### voucher
-
-#### store voucher
 
 *POST*
 ```http
@@ -67,77 +63,75 @@ https://c.mmsdev.site/api/v1/voucher
 ```
 
 
+## 2.2. list vouchers
 
-#### list vouchers
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/voucher
 ```
 
+## 2.3. show voucher
 
-#### show voucher
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/voucher/42
 ```
 
+## 2.4. delete voucher
 
-#### delete voucher
 
 *DELETE*
 ```http
 https://c.mmsdev.site/api/v1/voucher/52
 ```
 
+## 2.5. list soft-deleted vouchers
 
-#### list soft-deleted vouchers
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/voucher/show-trash
 ```
 
+## 2.6. restore
 
-#### restore
 
 *POST*
 ```http
 https://c.mmsdev.site/api/v1/voucher/restore/25
 ```
 
+## 2.7. force delete
 
-#### force delete
 
 *POST*
 ```http
 https://c.mmsdev.site/api/v1/voucher/force-delete/3
 ```
 
+## 2.8. empty bin
 
-#### empty bin
 
 *POST*
 ```http
 https://c.mmsdev.site/api/v1/voucher/empty-bin
 ```
 
+## 2.9. recycle bin
 
-#### recycle bin
 
 *POST*
 ```http
 https://c.mmsdev.site/api/v1/voucher/recycle-bin
 ```
 
----------------------------
+----------------------------
+# 3. inventory-management
+## 3.1. products
+### 3.1.1. store
 
-## inventory-management
-
-### products
-
-#### store
 
 *POST*
 ```http
@@ -156,24 +150,24 @@ more_information | text | it&#39;s a toothpaste
 category_id      | text | 1                    
 
 
+### 3.1.2. index
 
-#### index
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/product
 ```
 
+### 3.1.3. show product
 
-#### show product
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/product/13
 ```
 
+### 3.1.4. update
 
-#### update
 
 *PUT*
 ```http
@@ -192,19 +186,18 @@ unit             | text | dozen
 more_information | text | it&#39;s a toothpaste
 
 
+### 3.1.5. delete
 
-#### delete
 
 *DELETE*
 ```http
 https://c.mmsdev.site/api/v1/product/7
 ```
 
----------------------------
+----------------------------
+## 3.2. brand
+### 3.2.1. store
 
-### brand
-
-#### store
 
 *POST*
 ```http
@@ -221,24 +214,24 @@ agent       | text | Smith
 phone_no    | text | 0996534554                                                                                                                                                    
 
 
+### 3.2.2. index
 
-#### index
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/brand
 ```
 
+### 3.2.3. show
 
-#### show
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/brand/15
 ```
 
+### 3.2.4. update
 
-#### update
 
 *PUT*
 ```http
@@ -255,19 +248,18 @@ agent       | text | Smith
 phone_no    | text | 0996534554                                                                                                                                                    
 
 
+### 3.2.5. delete
 
-#### delete
 
 *DELETE*
 ```http
 https://c.mmsdev.site/api/v1/brand/5
 ```
 
----------------------------
+----------------------------
+## 3.3. stock
+### 3.3.1. store
 
-### stock
-
-#### store
 
 *POST*
 ```http
@@ -282,43 +274,42 @@ quantity         | text | 30
 more_information | text | down to the underlying model for convenient access. Once the resource is defined, it may be returned from a route or controller
 
 
+### 3.3.2. index
 
-#### index
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/stock
 ```
 
+### 3.3.3. show
 
-#### show
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/stock/6
 ```
 
+### 3.3.4. delete
 
-#### delete
 
 *DELETE*
 ```http
 https://c.mmsdev.site/api/v1/stock/1
 ```
 
----------------------------
+----------------------------
+## 3.4. categories
+### 3.4.1. list categories
 
-### categories
-
-#### list categories
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/category
 ```
 
+### 3.4.2. store category
 
-#### store category
 
 *POST*
 ```http
@@ -332,16 +323,16 @@ name             | text | sex toys
 more_information | text | sex toys
 
 
+### 3.4.3. show products under
 
-#### show products under
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/category/1
 ```
 
+### 3.4.4. update categories
 
-#### update categories
 
 *PUT*
 ```http
@@ -355,11 +346,10 @@ name    | text | pizza pie!
 more_in | text |           
 
 
----------------------------
+----------------------------
+# 4. media
+## 4.1. upload
 
-## media
-
-### upload
 
 *POST*
 ```http
@@ -372,24 +362,24 @@ Key      | Type | Value
 photos[] | file |      
 
 
+## 4.2. display-media
 
-### display-media
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/photo
 ```
 
+## 4.3. delete
 
-### delete
 
 *DELETE*
 ```http
 https://c.mmsdev.site/api/v1/photo/26
 ```
 
+## 4.4. multiple-delete
 
-### multiple-delete
 
 *POST*
 ```http
@@ -407,12 +397,12 @@ https://c.mmsdev.site/api/v1/photo/multiple-delete
 ```
 
 
----------------------------
+----------------------------
+# 5. users
+## 5.1. create user
 
-## users
-
-### create user
-
+Note:
+only admin can create user
 *POST*
 ```http
 https://c.mmsdev.site/api/v1/user
@@ -431,10 +421,9 @@ address      | text | new york, united states
 role         | text | staff                  
 photo        | text |                        
 
-Note:
-only admin can create user
 
-### create 2nd user
+## 5.2. create 2nd user
+
 
 *POST*
 ```http
@@ -455,9 +444,10 @@ role         | text | staff
 photo        | text | shit                   
 
 
+## 5.3. update user
 
-### update user
-
+Note:
+staff user can update his info, admin have all previliges, staff cannot update to admin
 *PUT*
 ```http
 https://c.mmsdev.site/api/v1/user/4
@@ -475,18 +465,17 @@ gender       | text | male
 address      | text | hello worlddddddddd
 role         | text | staff              
 
-Note:
-staff user can update his info, admin have all previliges, staff cannot update to admin
 
-### show user
+## 5.4. show user
+
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/user/2
 ```
 
+## 5.5. modify password
 
-### modify password
 
 *POST*
 ```http
@@ -500,152 +489,147 @@ user_id      | text | 3
 new_password | text | asdfghjkl
 
 
+## 5.6. list users
 
-### list users
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/user
 ```
 
+## 5.7. ban user
 
-### ban user
-
+Note:
+only admin can ban a user, banned user can no longer log in, and all his sessions will be destroyed
 *POST*
 ```http
 https://c.mmsdev.site/api/v1/ban-user/3
 ```
-Note:
-only admin can ban a user, banned user can no longer log in, and all his sessions will be destroyed
----------------------------
 
-## finance
+----------------------------
+# 6. finance
+## 6.1. daily
 
-### daily
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/finance/daily/17-09-2023
 ```
 
+## 6.2. sale close
 
-### sale close
-
+Note:
+only admin can close/open sale, sale status doesn't required to open, implicitly done by current date
 *POST*
 ```http
 https://c.mmsdev.site/api/v1/finance/close-sale
 ```
-Note:
-only admin can close/open sale, sale status doesn't required to open, implicitly done by current date
 
-### open sale
+## 6.3. open sale
+
 
 *POST*
 ```http
 https://c.mmsdev.site/api/v1/finance/close-sale?false
 ```
 
+## 6.4. checkSaleClose
 
-### checkSaleClose
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/finance/sale-close-check
 ```
 
+## 6.5. monthly
 
-### monthly
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/finance/monthly/1-2-2023
 ```
 
+## 6.6. custom-sale-overview
 
-### custom-sale-overview
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/finance/custom-sale-overview/2023-09-01/2023-09-20
 ```
 
----------------------------
+----------------------------
+# 7. report
+## 7.1. stock-report
+### 7.1.1. stock
 
-## report
-
-### stock-report
-
-#### stock
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/stock-report?stock_level=in stock
 ```
 
+### 7.1.2. best-seller-brands
 
-#### best-seller-brands
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/weekly-best-seller-brand
 ```
 
+### 7.1.3. testing
 
-#### testing
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/sale-reprot-weekly
 ```
 
----------------------------
+----------------------------
+## 7.2. sale-report
+### 7.2.1. this week
 
-### sale-report
-
-#### this week
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/sale-report/current-week
 ```
 
+### 7.2.2. this month
 
-#### this month
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/sale-report/current-month
 ```
 
+### 7.2.3. that month
 
-#### that month
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/sale-report/current-month?month=1
 ```
 
+### 7.2.4. best sale products
 
-#### best sale products
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/sale-report/best-sale-products
 ```
 
+### 7.2.5. best sale brands
 
-#### best sale brands
 
 *GET*
 ```http
 https://c.mmsdev.site/api/v1/sale-report/best-sale-brands
 ```
 
----------------------------
+----------------------------
+# 8. Authentication
+## 8.1. staff login
 
-## Authentication
-
-### staff login
 
 *POST*
 ```http
@@ -659,8 +643,8 @@ email    | text | stu@gmail.com
 password | text | password     
 
 
+## 8.2. admin login
 
-### admin login
 
 *POST*
 ```http
@@ -674,8 +658,8 @@ email    | text | admin@gmail.com
 password | text | password       
 
 
+## 8.3. test
 
-### test
 
 *POST*
 ```http
@@ -689,8 +673,8 @@ email    | text | admin@gmail.com
 password | text | password       
 
 
+## 8.4. admin login (remote credentials)
 
-### admin login (remote credentials)
 
 *POST*
 ```http
@@ -704,4 +688,4 @@ email    | text | a3@gmail.com
 password | text | password    
 
 
----------------------------
+----------------------------

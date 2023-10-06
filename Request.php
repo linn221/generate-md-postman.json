@@ -26,17 +26,18 @@ class Request
             case 'url':
                 $result = <<<URL
 
+$description
 *$method*
 ```http
 $url
 ```
-$description
 
 URL;
                 break;
             case 'payload':
                 $result = <<<PAYLOAD
 
+$description
 *$method*
 ```http
 $url
@@ -44,7 +45,6 @@ $url
 [*$mode*]
 
 $table_string
-$description
 
 PAYLOAD;
                 break;
