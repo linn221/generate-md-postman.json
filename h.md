@@ -1,0 +1,3 @@
+run me with json file name appended => 
+>php main.php postman.json >README.md
+Failed reading postman.json file by default...
