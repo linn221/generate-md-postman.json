@@ -3,6 +3,7 @@
 
 ### Run
 ```shell
+composer install
 php index.php {export.json} >output.md
 ```
 
