@@ -7,37 +7,54 @@
 require "vendor/autoload.php";
 require "Request.php";
 
-
-function echoMd(string $s) {
-    // echo $s;
-    $parsedown = new Parsedown();
-    echo $parsedown->text($s);
+function pout(string $s)
+{
+    echo "$s\n";
 }
 
-function md_generate(stdClass $data, string $append = "") {
+function generate_md(stdClass $data, string $heading = "", string $bullet = "")
+{
     // if $data has item, it is a folder, loop each of them, prnting the folder name in H2
-    if (!is_null($data->item)) {
-        foreach($data->item as $item) {
-            $bullet = $append . "#";
-            $heading = "$bullet $item->name\n";
-            echoMd($heading);
-            // echo $heading;
-            md_generate($item, $bullet);
+    // BASE case
+    if (!is_null($data->item))
+    {
+        // if a folder only have a single item,
+        // no need to update bullet, append a decimal
+        // bulleting is, well, hurt
+        if (count($data->item) == 1)
+        {
+            $item = $data->item[0];
+            $title = "$heading# $bullet $item->name";
+            pout($title);
+            // RECURSIVE call
+            generate_md($item, $heading, $bullet);
+            return;
         }
-        echoMd("--------");
 
+        // if not
+        // append a number, and keep incrementing
+        foreach ($data->item as $index => $item)
+        {
+            $index++;
+            $title = "$heading# $bullet$index. $item->name";
+            pout($title);
+            // RECURSIVE call
+            generate_md($item, $heading.'#', $bullet . "$index.");
+        }
+        // line break after echoing a folder's inside
+        // but not after echoing a folder's subfolders, tough to explain
+        $last_item = $data->item[count($data->item) - 1];
+        if (is_null($last_item->item))
+        {
+            pout('----------------------------');
+        }
         return;
     }
-    $request = new Request($data);
-    // dump($request);
-    $md = $request->render();
-    // echo $md;
-    echoMd($md);
-    // $request->print();
+
     // if $data has request, it is a request, create an instance and print the md, return;
-    // if (is_null($data->request)) {
-    //     return md_generate($data->item);
-    // }
+    // base case
+    $request = new Request($data);
+    pout($request);
 }
 
 // if (count($argv) <= 1) {
@@ -47,19 +64,4 @@ function md_generate(stdClass $data, string $append = "") {
 // }
 $fileName = $_GET['file_name'] ?? 'postman.json';
 $postman = json_decode(file_get_contents($fileName));
-// $data = $postman->item[0];
-// dd($postman);
-// dump($postman);
-md_generate($postman);
-// dd($data);
-// $folders = $data->item;
-// foreach($folders as $folder) {
-//     line("## $folder->name");
-// }
-// var_dump($postman);
-// $data = $postman['item'][0];
-// $request = $data->item[2]->item[0]->item[3];
-// dump($request);
-// $request = new Request($request);
-// dd($request);
-// $request->print();
+generate_md($postman);
