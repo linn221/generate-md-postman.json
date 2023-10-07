@@ -1,4 +1,83 @@
-<!-- API Documentation generated with https://github.com/linn221/generate-md-postman.json -->
+<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
+
+- [1. Authentication](#1-authentication)
+   * [1.1. staff login](#11-staff-login)
+   * [1.2. admin login](#12-admin-login)
+   * [1.3. test](#13-test)
+   * [1.4. admin login (remote credentials)](#14-admin-login-remote-credentials)
+- [2. profile](#2-profile)
+   * [2.1. users](#21-users)
+      + [2.1.1. create user](#211-create-user)
+      + [2.1.2. create 2nd user](#212-create-2nd-user)
+      + [2.1.3. update user](#213-update-user)
+      + [2.1.4. show user](#214-show-user)
+      + [2.1.5. modify password](#215-modify-password)
+      + [2.1.6. list users](#216-list-users)
+      + [2.1.7. ban user](#217-ban-user)
+   * [2.2. change password](#22-change-password)
+   * [2.3. logout](#23-logout)
+   * [2.4. who am i?](#24-who-am-i)
+- [3. media](#3-media)
+   * [3.1. upload](#31-upload)
+   * [3.2. display-media](#32-display-media)
+   * [3.3. delete](#33-delete)
+   * [3.4. multiple-delete](#34-multiple-delete)
+- [4. inventory-management](#4-inventory-management)
+   * [4.1. products](#41-products)
+      + [4.1.1. store](#411-store)
+      + [4.1.2. index](#412-index)
+      + [4.1.3. show product](#413-show-product)
+      + [4.1.4. update](#414-update)
+      + [4.1.5. delete](#415-delete)
+   * [4.2. brand](#42-brand)
+      + [4.2.1. store](#421-store)
+      + [4.2.2. index](#422-index)
+      + [4.2.3. show](#423-show)
+      + [4.2.4. update](#424-update)
+      + [4.2.5. delete](#425-delete)
+   * [4.3. stock](#43-stock)
+      + [4.3.1. store](#431-store)
+      + [4.3.2. index](#432-index)
+      + [4.3.3. show](#433-show)
+      + [4.3.4. delete](#434-delete)
+   * [4.4. categories](#44-categories)
+      + [4.4.1. list categories](#441-list-categories)
+      + [4.4.2. store category](#442-store-category)
+      + [4.4.3. show products under](#443-show-products-under)
+      + [4.4.4. update categories](#444-update-categories)
+- [5. sale-processing](#5-sale-processing)
+   * [5. voucher](#5-voucher)
+      + [5.1. store voucher](#51-store-voucher)
+      + [5.2. list vouchers](#52-list-vouchers)
+      + [5.3. show voucher](#53-show-voucher)
+      + [5.4. delete voucher](#54-delete-voucher)
+      + [5.5. list soft-deleted vouchers](#55-list-soft-deleted-vouchers)
+      + [5.6. restore](#56-restore)
+      + [5.7. force delete](#57-force-delete)
+      + [5.8. empty bin](#58-empty-bin)
+      + [5.9. recycle bin](#59-recycle-bin)
+- [6. finance](#6-finance)
+   * [6.1. daily](#61-daily)
+   * [6.2. daily Copy](#62-daily-copy)
+   * [6.3. sale close](#63-sale-close)
+   * [6.4. open sale](#64-open-sale)
+   * [6.5. checkSaleClose](#65-checksaleclose)
+   * [6.6. monthly](#66-monthly)
+   * [6.7. custom-sale-overview](#67-custom-sale-overview)
+- [7. report](#7-report)
+   * [7.1. stock-report](#71-stock-report)
+      + [7.1.1. stock](#711-stock)
+      + [7.1.2. best-seller-brands](#712-best-seller-brands)
+      + [7.1.3. testing](#713-testing)
+   * [7.2. sale-report](#72-sale-report)
+      + [7.2.1. this week](#721-this-week)
+      + [7.2.2. this month](#722-this-month)
+      + [7.2.3. that month](#723-that-month)
+      + [7.2.4. best sale products](#724-best-sale-products)
+      + [7.2.5. best sale brands](#725-best-sale-brands)
+
+<!-- TOC end -->
+
 # 1. Authentication
 ## 1.1. staff login
 
@@ -477,7 +556,7 @@ more_in | text |
 
 ----------------------------
 # 5. sale-processing
-## voucher
+## 5. voucher
 ### 5.1. store voucher
 
 
@@ -701,3 +780,4 @@ https://c.mmsdev.site/api/v1/sale-report/best-sale-brands
 ```
 
 ----------------------------
+

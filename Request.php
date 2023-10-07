@@ -27,7 +27,7 @@ class Request
                 $result = <<<URL
 
 $description
-*$method*
+**$method**
 ```http
 $url
 ```
@@ -38,7 +38,7 @@ URL;
                 $result = <<<PAYLOAD
 
 $description
-*$method*
+**$method**
 ```http
 $url
 ```
@@ -58,7 +58,7 @@ PAYLOAD;
         $method = $this->method;
         $mode = $this->mode;
         if ($this->description) {
-            $description = "Note:\n$this->description";
+			$description = "Note:\n$this->description\\\n\\";
         } else {
             $description = '';
         }

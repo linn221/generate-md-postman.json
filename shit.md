@@ -1,6 +1,85 @@
-<!-- API Documentation generated with https://github.com/linn221/generate-md-postman.json -->
-# 1. Authentication
-## 1.1. staff login
+<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
+
+- [Authentication](#authentication)
+   * [staff login](#staff-login)
+   * [admin login](#admin-login)
+   * [test](#test)
+   * [admin login (remote credentials)](#admin-login-remote-credentials)
+- [profile](#profile)
+   * [users](#users)
+      + [create user](#create-user)
+      + [create 2nd user](#create-2nd-user)
+      + [update user](#update-user)
+      + [show user](#show-user)
+      + [modify password](#modify-password)
+      + [list users](#list-users)
+      + [ban user](#ban-user)
+   * [change password](#change-password)
+   * [logout](#logout)
+   * [who am i?](#who-am-i)
+- [media](#media)
+   * [upload](#upload)
+   * [display-media](#display-media)
+   * [delete](#delete)
+   * [multiple-delete](#multiple-delete)
+- [inventory-management](#inventory-management)
+   * [products](#products)
+      + [store](#store)
+      + [index](#index)
+      + [show product](#show-product)
+      + [update](#update)
+      + [delete](#delete-1)
+   * [brand](#brand)
+      + [store](#store-1)
+      + [index](#index-1)
+      + [show](#show)
+      + [update](#update-1)
+      + [delete](#delete-2)
+   * [stock](#stock)
+      + [store](#store-2)
+      + [index](#index-2)
+      + [show](#show-1)
+      + [delete](#delete-3)
+   * [categories](#categories)
+      + [list categories](#list-categories)
+      + [store category](#store-category)
+      + [show products under](#show-products-under)
+      + [update categories](#update-categories)
+- [sale-processing](#sale-processing)
+   * [voucher](#voucher)
+      + [store voucher](#store-voucher)
+      + [list vouchers](#list-vouchers)
+      + [show voucher](#show-voucher)
+      + [delete voucher](#delete-voucher)
+      + [list soft-deleted vouchers](#list-soft-deleted-vouchers)
+      + [restore](#restore)
+      + [force delete](#force-delete)
+      + [empty bin](#empty-bin)
+      + [recycle bin](#recycle-bin)
+- [finance](#finance)
+   * [daily](#daily)
+   * [daily Copy](#daily-copy)
+   * [sale close](#sale-close)
+   * [open sale](#open-sale)
+   * [checkSaleClose](#checksaleclose)
+   * [monthly](#monthly)
+   * [custom-sale-overview](#custom-sale-overview)
+- [report](#report)
+   * [stock-report](#stock-report)
+      + [stock](#stock-1)
+      + [best-seller-brands](#best-seller-brands)
+      + [testing](#testing)
+   * [sale-report](#sale-report)
+      + [this week](#this-week)
+      + [this month](#this-month)
+      + [that month](#that-month)
+      + [best sale products](#best-sale-products)
+      + [best sale brands](#best-sale-brands)
+
+<!-- TOC end -->
+
+# Authentication
+## staff login
 
 
 **POST**
@@ -15,7 +94,7 @@ email    | text | stu@gmail.com
 password | text | password     
 
 
-## 1.2. admin login
+## admin login
 
 
 **POST**
@@ -30,7 +109,7 @@ email    | text | admin@gmail.com
 password | text | password       
 
 
-## 1.3. test
+## test
 
 
 **POST**
@@ -45,7 +124,7 @@ email    | text | admin@gmail.com
 password | text | password       
 
 
-## 1.4. admin login (remote credentials)
+## admin login (remote credentials)
 
 
 **POST**
@@ -61,9 +140,9 @@ password | text | password
 
 
 ----------------------------
-# 2. profile
-## 2.1. users
-### 2.1.1. create user
+# profile
+## users
+### create user
 
 Note:
 only admin can create user\
@@ -87,7 +166,7 @@ role         | text | staff
 photo        | text |                        
 
 
-### 2.1.2. create 2nd user
+### create 2nd user
 
 
 **POST**
@@ -109,7 +188,7 @@ role         | text | staff
 photo        | text | shit                   
 
 
-### 2.1.3. update user
+### update user
 
 Note:
 staff user can update his info, admin have all previliges, staff cannot update to admin\
@@ -132,7 +211,7 @@ address      | text | hello worlddddddddd
 role         | text | staff              
 
 
-### 2.1.4. show user
+### show user
 
 
 **GET**
@@ -140,7 +219,7 @@ role         | text | staff
 https://c.mmsdev.site/api/v1/user/2
 ```
 
-### 2.1.5. modify password
+### modify password
 
 
 **POST**
@@ -155,7 +234,7 @@ user_id      | text | 3
 new_password | text | asdfghjkl
 
 
-### 2.1.6. list users
+### list users
 
 
 **GET**
@@ -163,7 +242,7 @@ new_password | text | asdfghjkl
 https://c.mmsdev.site/api/v1/user
 ```
 
-### 2.1.7. ban user
+### ban user
 
 Note:
 only admin can ban a user, banned user can no longer log in, and all his sessions will be destroyed\
@@ -174,7 +253,7 @@ https://c.mmsdev.site/api/v1/ban-user/3
 ```
 
 ----------------------------
-## 2.2. change password
+## change password
 
 
 **POST**
@@ -189,7 +268,7 @@ current_password | text | password
 new_password     | text | asdfghjkl
 
 
-## 2.3. logout
+## logout
 
 
 **POST**
@@ -197,7 +276,7 @@ new_password     | text | asdfghjkl
 https://c.mmsdev.site/api/v1/logout
 ```
 
-## 2.4. who am i?
+## who am i?
 
 
 **GET**
@@ -206,8 +285,8 @@ https://c.mmsdev.site/api/v1/profile
 ```
 
 ----------------------------
-# 3. media
-## 3.1. upload
+# media
+## upload
 
 
 **POST**
@@ -221,7 +300,7 @@ Key      | Type | Value
 photos[] | file |      
 
 
-## 3.2. display-media
+## display-media
 
 
 **GET**
@@ -229,7 +308,7 @@ photos[] | file |
 https://c.mmsdev.site/api/v1/photo
 ```
 
-## 3.3. delete
+## delete
 
 
 **DELETE**
@@ -237,7 +316,7 @@ https://c.mmsdev.site/api/v1/photo
 https://c.mmsdev.site/api/v1/photo/26
 ```
 
-## 3.4. multiple-delete
+## multiple-delete
 
 
 **POST**
@@ -257,9 +336,9 @@ https://c.mmsdev.site/api/v1/photo/multiple-delete
 
 
 ----------------------------
-# 4. inventory-management
-## 4.1. products
-### 4.1.1. store
+# inventory-management
+## products
+### store
 
 
 **POST**
@@ -279,7 +358,7 @@ more_information | text | it&#39;s a toothpaste
 category_id      | text | 1                    
 
 
-### 4.1.2. index
+### index
 
 
 **GET**
@@ -287,7 +366,7 @@ category_id      | text | 1
 https://c.mmsdev.site/api/v1/product
 ```
 
-### 4.1.3. show product
+### show product
 
 
 **GET**
@@ -295,7 +374,7 @@ https://c.mmsdev.site/api/v1/product
 https://c.mmsdev.site/api/v1/product/13
 ```
 
-### 4.1.4. update
+### update
 
 
 **PUT**
@@ -315,7 +394,7 @@ unit             | text | dozen
 more_information | text | it&#39;s a toothpaste
 
 
-### 4.1.5. delete
+### delete
 
 
 **DELETE**
@@ -324,8 +403,8 @@ https://c.mmsdev.site/api/v1/product/7
 ```
 
 ----------------------------
-## 4.2. brand
-### 4.2.1. store
+## brand
+### store
 
 
 **POST**
@@ -343,7 +422,7 @@ agent       | text | Smith
 phone_no    | text | 0996534554                                                                                                                                                    
 
 
-### 4.2.2. index
+### index
 
 
 **GET**
@@ -351,7 +430,7 @@ phone_no    | text | 0996534554
 https://c.mmsdev.site/api/v1/brand
 ```
 
-### 4.2.3. show
+### show
 
 
 **GET**
@@ -359,7 +438,7 @@ https://c.mmsdev.site/api/v1/brand
 https://c.mmsdev.site/api/v1/brand/15
 ```
 
-### 4.2.4. update
+### update
 
 
 **PUT**
@@ -377,7 +456,7 @@ agent       | text | Smith
 phone_no    | text | 0996534554                                                                                                                                                    
 
 
-### 4.2.5. delete
+### delete
 
 
 **DELETE**
@@ -386,8 +465,8 @@ https://c.mmsdev.site/api/v1/brand/5
 ```
 
 ----------------------------
-## 4.3. stock
-### 4.3.1. store
+## stock
+### store
 
 
 **POST**
@@ -403,7 +482,7 @@ quantity         | text | 30
 more_information | text | down to the underlying model for convenient access. Once the resource is defined, it may be returned from a route or controller
 
 
-### 4.3.2. index
+### index
 
 
 **GET**
@@ -411,7 +490,7 @@ more_information | text | down to the underlying model for convenient access. On
 https://c.mmsdev.site/api/v1/stock
 ```
 
-### 4.3.3. show
+### show
 
 
 **GET**
@@ -419,7 +498,7 @@ https://c.mmsdev.site/api/v1/stock
 https://c.mmsdev.site/api/v1/stock/6
 ```
 
-### 4.3.4. delete
+### delete
 
 
 **DELETE**
@@ -428,8 +507,8 @@ https://c.mmsdev.site/api/v1/stock/1
 ```
 
 ----------------------------
-## 4.4. categories
-### 4.4.1. list categories
+## categories
+### list categories
 
 
 **GET**
@@ -437,7 +516,7 @@ https://c.mmsdev.site/api/v1/stock/1
 https://c.mmsdev.site/api/v1/category
 ```
 
-### 4.4.2. store category
+### store category
 
 
 **POST**
@@ -452,7 +531,7 @@ name             | text | sex toys
 more_information | text | sex toys
 
 
-### 4.4.3. show products under
+### show products under
 
 
 **GET**
@@ -460,7 +539,7 @@ more_information | text | sex toys
 https://c.mmsdev.site/api/v1/category/1
 ```
 
-### 4.4.4. update categories
+### update categories
 
 
 **PUT**
@@ -476,9 +555,9 @@ more_in | text |
 
 
 ----------------------------
-# 5. sale-processing
+# sale-processing
 ## voucher
-### 5.1. store voucher
+### store voucher
 
 
 **POST**
@@ -507,7 +586,7 @@ https://c.mmsdev.site/api/v1/voucher
 ```
 
 
-### 5.2. list vouchers
+### list vouchers
 
 
 **GET**
@@ -515,7 +594,7 @@ https://c.mmsdev.site/api/v1/voucher
 https://c.mmsdev.site/api/v1/voucher
 ```
 
-### 5.3. show voucher
+### show voucher
 
 
 **GET**
@@ -523,7 +602,7 @@ https://c.mmsdev.site/api/v1/voucher
 https://c.mmsdev.site/api/v1/voucher/42
 ```
 
-### 5.4. delete voucher
+### delete voucher
 
 
 **DELETE**
@@ -531,7 +610,7 @@ https://c.mmsdev.site/api/v1/voucher/42
 https://c.mmsdev.site/api/v1/voucher/52
 ```
 
-### 5.5. list soft-deleted vouchers
+### list soft-deleted vouchers
 
 
 **GET**
@@ -539,7 +618,7 @@ https://c.mmsdev.site/api/v1/voucher/52
 https://c.mmsdev.site/api/v1/voucher/show-trash
 ```
 
-### 5.6. restore
+### restore
 
 
 **POST**
@@ -547,7 +626,7 @@ https://c.mmsdev.site/api/v1/voucher/show-trash
 https://c.mmsdev.site/api/v1/voucher/restore/25
 ```
 
-### 5.7. force delete
+### force delete
 
 
 **POST**
@@ -555,7 +634,7 @@ https://c.mmsdev.site/api/v1/voucher/restore/25
 https://c.mmsdev.site/api/v1/voucher/force-delete/3
 ```
 
-### 5.8. empty bin
+### empty bin
 
 
 **POST**
@@ -563,7 +642,7 @@ https://c.mmsdev.site/api/v1/voucher/force-delete/3
 https://c.mmsdev.site/api/v1/voucher/empty-bin
 ```
 
-### 5.9. recycle bin
+### recycle bin
 
 
 **POST**
@@ -572,8 +651,8 @@ https://c.mmsdev.site/api/v1/voucher/recycle-bin
 ```
 
 ----------------------------
-# 6. finance
-## 6.1. daily
+# finance
+## daily
 
 
 **GET**
@@ -581,7 +660,7 @@ https://c.mmsdev.site/api/v1/voucher/recycle-bin
 https://c.mmsdev.site/api/v1/finance/daily/17-09-2023
 ```
 
-## 6.2. daily Copy
+## daily Copy
 
 
 **GET**
@@ -589,7 +668,7 @@ https://c.mmsdev.site/api/v1/finance/daily/17-09-2023
 https://c.mmsdev.site/api/v1/finance/daily/17-09-2023
 ```
 
-## 6.3. sale close
+## sale close
 
 Note:
 only admin can close/open sale, sale status doesn't required to open, implicitly done by current date\
@@ -599,7 +678,7 @@ only admin can close/open sale, sale status doesn't required to open, implicitly
 https://c.mmsdev.site/api/v1/finance/close-sale
 ```
 
-## 6.4. open sale
+## open sale
 
 
 **POST**
@@ -607,7 +686,7 @@ https://c.mmsdev.site/api/v1/finance/close-sale
 https://c.mmsdev.site/api/v1/finance/close-sale?false
 ```
 
-## 6.5. checkSaleClose
+## checkSaleClose
 
 
 **GET**
@@ -615,7 +694,7 @@ https://c.mmsdev.site/api/v1/finance/close-sale?false
 https://c.mmsdev.site/api/v1/finance/sale-close-check
 ```
 
-## 6.6. monthly
+## monthly
 
 
 **GET**
@@ -623,7 +702,7 @@ https://c.mmsdev.site/api/v1/finance/sale-close-check
 https://c.mmsdev.site/api/v1/finance/monthly/1-2-2023
 ```
 
-## 6.7. custom-sale-overview
+## custom-sale-overview
 
 
 **GET**
@@ -632,9 +711,9 @@ https://c.mmsdev.site/api/v1/finance/custom-sale-overview/2023-09-01/2023-09-20
 ```
 
 ----------------------------
-# 7. report
-## 7.1. stock-report
-### 7.1.1. stock
+# report
+## stock-report
+### stock
 
 
 **GET**
@@ -642,7 +721,7 @@ https://c.mmsdev.site/api/v1/finance/custom-sale-overview/2023-09-01/2023-09-20
 https://c.mmsdev.site/api/v1/stock-report?stock_level=in stock
 ```
 
-### 7.1.2. best-seller-brands
+### best-seller-brands
 
 
 **GET**
@@ -650,7 +729,7 @@ https://c.mmsdev.site/api/v1/stock-report?stock_level=in stock
 https://c.mmsdev.site/api/v1/weekly-best-seller-brand
 ```
 
-### 7.1.3. testing
+### testing
 
 
 **GET**
@@ -659,8 +738,8 @@ https://c.mmsdev.site/api/v1/sale-reprot-weekly
 ```
 
 ----------------------------
-## 7.2. sale-report
-### 7.2.1. this week
+## sale-report
+### this week
 
 
 **GET**
@@ -668,7 +747,7 @@ https://c.mmsdev.site/api/v1/sale-reprot-weekly
 https://c.mmsdev.site/api/v1/sale-report/current-week
 ```
 
-### 7.2.2. this month
+### this month
 
 
 **GET**
@@ -676,7 +755,7 @@ https://c.mmsdev.site/api/v1/sale-report/current-week
 https://c.mmsdev.site/api/v1/sale-report/current-month
 ```
 
-### 7.2.3. that month
+### that month
 
 
 **GET**
@@ -684,7 +763,7 @@ https://c.mmsdev.site/api/v1/sale-report/current-month
 https://c.mmsdev.site/api/v1/sale-report/current-month?month=1
 ```
 
-### 7.2.4. best sale products
+### best sale products
 
 
 **GET**
@@ -692,7 +771,7 @@ https://c.mmsdev.site/api/v1/sale-report/current-month?month=1
 https://c.mmsdev.site/api/v1/sale-report/best-sale-products
 ```
 
-### 7.2.5. best sale brands
+### best sale brands
 
 
 **GET**
@@ -701,3 +780,4 @@ https://c.mmsdev.site/api/v1/sale-report/best-sale-brands
 ```
 
 ----------------------------
+
